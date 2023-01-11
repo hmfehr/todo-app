@@ -8,7 +8,13 @@ const SettingsProvider = ({children}) => {
   const [pageItems, setPageItems] = useState(3);
   const [sort, setSort] = useState('difficulty');
 
-  const values = {showComplete, pageItems, sort}
+  const values = {
+    showComplete, 
+    pageItems, 
+    sort,
+    setSort,
+    setPageItems,
+    setShowComplete}
 
   return(
     <SettingsContext.Provider value={values}>

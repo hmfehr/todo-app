@@ -1,4 +1,6 @@
-import { Text, createStyles } from '@mantine/core'
+import { Text, createStyles, Navbar } from '@mantine/core'
+import { Link } from 'react-router-dom';
+
 
 const useStyles = createStyles((theme)=> ({
   header: {
@@ -11,11 +13,17 @@ const useStyles = createStyles((theme)=> ({
 
 const Header = () => {
 
+
   return (
     <>
+    <div>
       <header>
         <Text>Home</Text>
       </header>
+      <ul>
+        {}
+      </ul>
+      </div>
     </>
   )
 };
