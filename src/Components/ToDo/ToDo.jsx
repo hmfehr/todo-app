@@ -1,11 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
 import useForm from '../../hooks/form.js';
+import { Card, createStyles, Grid, TextInput, Slider, Button } from '@mantine/core';
 
 import { v4 as uuid } from 'uuid';
 import { SettingsContext } from '../../Context/Settings/index.jsx';
 import List from '../List/index.jsx';
 
+const useStyles = createStyles((theme) => ({
+  h1: {
+    backgroundColor: theme.colors.gray[8],
+    color: theme.colors.gray[0],
+    width: '80%',
+    margin: 'auto',
+    fontSize: theme.spacing.md,
+    padding: theme.spacing.md,
+    margin
+
+  }
+}));
+
 const ToDo = () => {
+  const { classes } = useStyles();
 
   const { showComplete, pageItems, sort } = useContext(SettingsContext);
   console.log('todo: ', showComplete, pageItems, sort)
@@ -53,35 +68,54 @@ const ToDo = () => {
 
   return (
     <>
-      <header data-testid="todo-header">
-        <h1 data-testid="todo-h1">To Do List: {incomplete} items pending</h1>
-      </header>
 
-      <form onSubmit={handleSubmit}>
+      <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
 
-        <h2>Add To Do Item</h2>
+      <Grid style={{ width: '80%', margin: 'auto' }}>
+        <Grid.Col xs={12} sm={4}>
+          <Card withBorder>
+            <form onSubmit={handleSubmit}>
 
-        <label>
-          <span>To Do Item</span>
-          <input onChange={handleChange} name="text" type="text" placeholder="Item Details" />
-        </label>
+              <h2>Add To Do Item</h2>
 
-        <label>
-          <span>Assigned To</span>
-          <input onChange={handleChange} name="assignee" type="text" placeholder="Assignee Name" />
-        </label>
+              <TextInput
+                name='text'
+                placeholder="Item Details"
+                onChange={handleChange}
+                label='To Do Item'
+              />
 
-        <label>
-          <span>Difficulty</span>
-          <input onChange={handleChange} defaultValue={defaultValues.difficulty} type="range" min={1} max={5} name="difficulty" />
-        </label>
+              <TextInput
+                name='assignee'
+                placeholder="Assignee Name"
+                onChange={handleChange}
+                label='Assigned To'
+              />
 
-        <label>
-          <button type="submit">Add Item</button>
-        </label>
-      </form>
+              <Text>Difficulty</Text>
+              <Slider
+                name='difficulty'
+                onChange={handleChange}
+                min={1}
+                max={5}
+                step={1}
+                defaultValue={defaultValues.difficulty}
+              />
 
-      <List list={list} toggleComplete={toggleComplete} />
+
+              <Button type="submit">Add Item</Button>
+
+            </form>
+          </Card>
+        </Grid.Col>
+      </Grid>
+      <Grid.Col xs={12} sm={8}>
+        {/* <Card withBorder></Card> */}
+        <List list={list} toggleComplete={toggleComplete} />
+      </Grid.Col>
+
+
+
 
     </>
   );
