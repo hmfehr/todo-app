@@ -1,33 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
-import SettingForm from './Components/SettingsForm';
-import { Link, Router, Routes, Route } from 'react-router-dom';
-
 import ToDo from './Components/ToDo/ToDo';
+import SettingsForm from './Components/SettingsForm';
+
 
 export default class App extends React.Component {
   render() {
     return (
       <>
-
-        <Router>
+        <BrowserRouter>
           <Header />
           <Routes>
-            <Route
-              exact path="/"
-              element={<Header />}
-            >
-            </Route>
-            <Route
-              exact path="/setting"
-              element={<SettingForm />}
-            >
-            </Route>
-
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
+            <Route path='/' element={<ToDo />} />
+            <Route path='/settings' element={<SettingsForm />} />
           </Routes>
-          
-        </Router>
+        </BrowserRouter>
 
       </>
     );
