@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     // color: theme.colors.gray[0],
   },
   link: {
-    fontsize: theme.fontsize.md,
+    fontSize: theme.fontSizes.md,
     color: theme.colors.gray[0],
     textDecoration: 'none',
   }
