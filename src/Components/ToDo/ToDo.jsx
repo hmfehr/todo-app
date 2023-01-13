@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     margin: 'auto',
     fontSize: theme.spacing.md,
     padding: theme.spacing.md,
-    
+
 
   }
 }));
@@ -112,11 +112,11 @@ const ToDo = () => {
             </Card>
           </Grid.Col>
         </Auth>
+        <Grid.Col xs={12} sm={8}>
+          {/* <Card withBorder></Card> */}
+          <List list={list} toggleComplete={toggleComplete} />
+        </Grid.Col>
       </Grid>
-      <Grid.Col xs={12} sm={8}>
-        {/* <Card withBorder></Card> */}
-        <List list={list} toggleComplete={toggleComplete} />
-      </Grid.Col>
 
 
 
