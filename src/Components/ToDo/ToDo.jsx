@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import useForm from '../../hooks/form.js';
-import { Card, createStyles, Grid, TextInput, Slider, Button } from '@mantine/core';
+import { Card, createStyles, Grid, TextInput, Slider, Button, Text } from '@mantine/core';
 
 import { v4 as uuid } from 'uuid';
 import { SettingsContext } from '../../Context/Settings/index.jsx';
 import List from '../List/index.jsx';
+import Auth from '../Auth/index.js';
 
 const useStyles = createStyles((theme) => ({
   h1: {
@@ -14,7 +15,7 @@ const useStyles = createStyles((theme) => ({
     margin: 'auto',
     fontSize: theme.spacing.md,
     padding: theme.spacing.md,
-    margin
+    
 
   }
 }));
@@ -72,42 +73,45 @@ const ToDo = () => {
       <h1 data-testid="todo-h1" className={classes.h1}>To Do List: {incomplete} items pending</h1>
 
       <Grid style={{ width: '80%', margin: 'auto' }}>
-        <Grid.Col xs={12} sm={4}>
-          <Card withBorder>
-            <form onSubmit={handleSubmit}>
+        <Auth capability='create'>
+          <Grid.Col xs={12} sm={4}>
 
-              <h2>Add To Do Item</h2>
+            <Card withBorder>
+              <form onSubmit={handleSubmit}>
 
-              <TextInput
-                name='text'
-                placeholder="Item Details"
-                onChange={handleChange}
-                label='To Do Item'
-              />
+                <h2>Add To Do Item</h2>
 
-              <TextInput
-                name='assignee'
-                placeholder="Assignee Name"
-                onChange={handleChange}
-                label='Assigned To'
-              />
+                <TextInput
+                  name='text'
+                  placeholder="Item Details"
+                  onChange={handleChange}
+                  label='To Do Item'
+                />
 
-              <Text>Difficulty</Text>
-              <Slider
-                name='difficulty'
-                onChange={handleChange}
-                min={1}
-                max={5}
-                step={1}
-                defaultValue={defaultValues.difficulty}
-              />
+                <TextInput
+                  name='assignee'
+                  placeholder="Assignee Name"
+                  onChange={handleChange}
+                  label='Assigned To'
+                />
+
+                <Text>Difficulty</Text>
+                <Slider
+                  name='difficulty'
+                  onChange={handleChange}
+                  min={1}
+                  max={5}
+                  step={1}
+                  defaultValue={defaultValues.difficulty}
+                />
 
 
-              <Button type="submit">Add Item</Button>
+                <Button type="submit">Add Item</Button>
 
-            </form>
-          </Card>
-        </Grid.Col>
+              </form>
+            </Card>
+          </Grid.Col>
+        </Auth>
       </Grid>
       <Grid.Col xs={12} sm={8}>
         {/* <Card withBorder></Card> */}
