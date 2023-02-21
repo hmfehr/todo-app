@@ -115,7 +115,12 @@ const ToDo = () => {
         </Auth>
         <Auth capability='read'>
           <Grid.Col xs={12} sm={8}>
-            <List list={list} toggleComplete={toggleComplete} />
+            <List 
+            list={list} 
+            toggleComplete={toggleComplete} 
+            deleteItem={deleteItem}
+              
+            />
           </Grid.Col>
         </Auth>
       </Grid>
