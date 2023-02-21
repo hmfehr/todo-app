@@ -3,5 +3,9 @@
   "bracket-padder.smartCloseMaxParseLength": 0,
   "bracket-padder.smartPairs": {
     
-  }
+  },
+  "cSpell.words": [
+    "mantine",
+    "tabler"
+  ]
 }

@@ -3,8 +3,9 @@ import { useContext, useState } from "react";
 import { If, Then, Else } from "react-if";
 import { AuthContext } from "../../Context/Auth";
 import { SettingsContext } from "../../Context/Settings";
+import Auth from "../Auth";
 
-const List = ({ list, toggleComplete }) => {
+const List = ({ list, toggleComplete, deleteItem }) => {
   const { can, isLoggedIn } = useContext(AuthContext);
   const { showComplete, pageItems } = useContext(SettingsContext);
   const [page, setPage] = useState(1);
@@ -24,34 +25,36 @@ const List = ({ list, toggleComplete }) => {
         <Card key={item.id} withBorder shadow='md' mb="sm">
           <Card.Section withBorder>
             <Group position='apart'>
-            <Group>
-              <If condition={isLoggedIn && can("update")}>
-                <Then>
-                  <Badge
-                    color={item.complete ? "red" : "green"}
-                    variant='filled'
-                    onClick={() => toggleComplete(item.id)}
-                    m="3px"
-                  >
-                    {item.complete ? "Complete" : "Pending"}
-                  </Badge>
-                </Then>
-                <Else>
-                  <Badge
-                    color={item.complete ? "red" : "green"}
-                    variant='filled'
-                    m="3px"
-                  >
-                    {item.complete ? "Complete" : "Pending"}
-                  </Badge>
-                </Else>
-              </If>
-              <Text>{item.assignee}</Text>
-            </Group>
-              <CloseButton 
-                title='Close Todo Item'
-                onClick={() => delete}
-              />
+              <Group>
+                <If condition={isLoggedIn && can("update")}>
+                  <Then>
+                    <Badge
+                      color={item.complete ? "red" : "green"}
+                      variant='filled'
+                      onClick={() => toggleComplete(item.id)}
+                      m="3px"
+                    >
+                      {item.complete ? "Complete" : "Pending"}
+                    </Badge>
+                  </Then>
+                  <Else>
+                    <Badge
+                      color={item.complete ? "red" : "green"}
+                      variant='filled'
+                      m="3px"
+                    >
+                      {item.complete ? "Complete" : "Pending"}
+                    </Badge>
+                  </Else>
+                </If>
+                <Text>{item.assignee}</Text>
+              </Group>
+              <Auth capability="delete">
+                <CloseButton
+                  title='Close Todo Item'
+                  onClick={() => deleteItem(item.id)}
+                />
+              </Auth>
             </Group>
           </Card.Section>
           <Text mt='sm'>{item.text}</Text>
