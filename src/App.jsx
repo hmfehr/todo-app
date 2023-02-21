@@ -5,7 +5,7 @@ import ToDo from "./Components/ToDo/ToDo";
 import { When } from "react-if";
 import SettingsForm from "./Components/SettingsForm";
 import { AuthContext } from "./Context/Auth";
-import Footer from './Components/Footer';
+import Footer from "./Components/Footer";
 
 export default function App() {
   const { isLoggedIn } = useContext(AuthContext);
