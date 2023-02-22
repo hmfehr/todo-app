@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/Auth";
 import { SettingsContext } from "../../Context/Settings";
 import Auth from "../Auth";
 
-const List = ({ list, toggleComplete, deleteItem }) => {
+const List = ({ list, togglecomplete, deleteItem }) => {
   const { can, isLoggedIn } = useContext(AuthContext);
   const { showComplete, pageItems } = useContext(SettingsContext);
   const [page, setPage] = useState(1);
@@ -22,7 +22,7 @@ const List = ({ list, toggleComplete, deleteItem }) => {
   return (
     <>
       {displayList.map((item) => (
-        <Card key={item.id} withBorder shadow='md' mb="sm">
+        <Card key={item._id} withBorder shadow='md' mb="sm">
           <Card.Section withBorder>
             <Group position='apart'>
               <Group>
@@ -31,7 +31,7 @@ const List = ({ list, toggleComplete, deleteItem }) => {
                     <Badge
                       color={item.complete ? "red" : "green"}
                       variant='filled'
-                      onClick={() => toggleComplete(item.id)}
+                      onClick={() => togglecomplete(item)}
                       m="3px"
                     >
                       {item.complete ? "Complete" : "Pending"}
@@ -52,7 +52,7 @@ const List = ({ list, toggleComplete, deleteItem }) => {
               <Auth capability="delete">
                 <CloseButton
                   title='Close Todo Item'
-                  onClick={() => deleteItem(item.id)}
+                  onClick={() => deleteItem(item._id)}
                 />
               </Auth>
             </Group>
